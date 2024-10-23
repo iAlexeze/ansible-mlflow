@@ -3,7 +3,7 @@
   tasks:
     - name: Start MLFLOW
       community.docker.docker_compose_v2:
-        project_src: "ansible-mlflow"
+        project_src: "."
         project_name: "mlflow"
         state: absent
         pull: missing
