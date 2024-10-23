@@ -1,0 +1,38 @@
+- name: Set Up General Purpose Services
+  hosts: localhost
+  tasks:
+    - name: Start MLFLOW
+      community.docker.docker_compose_v2:
+        project_src: "ansible-mlflow"
+        project_name: "mlflow"
+        state: absent
+        pull: missing
+        build: always
+        remove_orphans: yes
+        
+    - name: Start XNAT
+      community.docker.docker_compose_v2:
+        project_src: "ansible-xnat"
+        project_name: "xnat"
+        state: absent
+        pull: missing
+        build: always
+        remove_orphans: yes
+
+    - name: Start Airflow
+      community.docker.docker_compose_v2:
+        project_src: "ansible-airflow"
+        project_name: "airflow"
+        state: absent
+        pull: missing
+        build: always
+        remove_orphans: yes
+        
+    - name: Combined Set Up
+      community.docker.docker_compose_v2:
+        project_src: "combined_compose"
+        project_name: "ansible-services-setup"
+        state: absent
+        pull: missing
+        build: always
+        remove_orphans: yes
